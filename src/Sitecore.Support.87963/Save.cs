@@ -16,7 +16,7 @@ namespace Sitecore.Support.Pipelines
             return field.ID == FieldIDs.DisplayName;
         }
 
-        public void Process(SaveArgs args) 
+        public void Process(SaveArgs args)
         {
             SaveArgs.SaveItem[] items = args.Items;
             for (int i = 0; i < items.Length; i++)
