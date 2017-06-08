@@ -55,7 +55,7 @@ namespace Sitecore.Support.Pipelines
                                     }
                                     if (field.TypeKey == "general link" || field.TypeKey == "general link with search")
                                     {
-                                        saveField.Value = Uri.UnescapeDataString(saveField.Value).Replace("&", "&amp;");
+                                        saveField.Value = saveField.Value.Replace("&", "&amp;");
                                     }
                                 }
                                 field.Value = saveField.Value;
