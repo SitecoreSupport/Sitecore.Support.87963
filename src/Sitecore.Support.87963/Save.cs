@@ -55,7 +55,13 @@ namespace Sitecore.Support.Pipelines
                                     }
                                     if (field.TypeKey == "general link" || field.TypeKey == "general link with search")
                                     {
-                                        saveField.Value = saveField.Value.Replace("&", "&amp;");
+                                        //fix for 87963
+                                        //saveField.Value.IndexOf("&amp").Equals(saveField.Value.IndexOf("&")) means that at least one & symbol is encoded.
+                                        //And thus, there is a big chance that all other & symbols are encoded, too. In this case, we don't need to encode it twice
+                                        if (!saveField.Value.IndexOf("&amp").Equals(saveField.Value.IndexOf("&")))
+                                        {
+                                            saveField.Value = saveField.Value.Replace("&", "&amp;");
+                                        }                                     
                                     }
                                 }
                                 field.Value = saveField.Value;
